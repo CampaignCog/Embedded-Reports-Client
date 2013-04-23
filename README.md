@@ -4,3 +4,6 @@ This demo is used to get a http://campaigncog.com user started when integrating 
 ##Getting Started##
 
 ##Enhancement Ideas##
+
+#TODO:#
+1. replace resize hack with https://github.com/louisremi/jquery-smartresize/
