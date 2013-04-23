@@ -1,0 +1,62 @@
+<html>
+<head>
+<script src="jquery-1.9.1.js"></script>
+<style>
+body{padding:0;margin:0;overflow:hidden;}
+#cclogin{
+width:100%;
+overflow:auto;
+}#form-post-iframe{
+display:none;
+}
+#prev-header{
+	font-family:sans-serif;
+	letter-spacing:-.09em;
+	font-variant:small-caps;
+	font-size:43px;
+	padding:4px 4px 4px 20px;
+	color:rgb(179,179,179);
+	width:100%;
+    vertical-align: middle;
+	border-bottom: 1px solid white;
+}
+.header-text{
+	font-family:sans-serif;
+	font-variant:small-caps;
+	font-weight:900;
+	font-size:44px;
+	margin-left:20px;
+	color:rgb(125,153,60);
+}
+</style>
+<script>
+var resizeQueue = new $.Deferred(); //new is optional but it sure is descriptive
+resizeQueue.resolve();
+
+	var calcHeight = function() {
+        var header = $('#prev-header').height() + 11;
+        $("#cclogin").css('height',$(window).height() - header);
+	  };
+$(function() {
+    var $win = $(window);
+		$("#form-post-iframe").submit();
+		calcHeight();
+	});
+	/* Ugly but it seems to be the only thing that gets it working flawlessly with the sticky footer */
+	$(window).resize(function() {for(var i=0;i<20;i++){resizeQueue.done(calcHeight);}});
+	$(window).load(function() {for(var i=0;i<20;i++){resizeQueue.done(calcHeight);}});
+</script>
+  </head>
+  <body>
+<div id="prev-header">
+				<img class="cc-cog" src="http://campaigncog.com/img/cog.png" style="max-height: 44px;vertical-align:bottom;margin-bottom:6px;">
+                <img class="cc-title" src="http://campaigncog.com/img/cc-logo.png" style="max-width: 321px;" title="Campaign Cog" alt="Campaign Cog">
+				<span class="header-text">&lt;DEMO </span>CLIENT&gt;
+</div>
+<form action="http://campaigncog.com/auth/login" method="post" target="cclogin" id="form-post-iframe">
+   <input type="hidden" name="login" value="PUT YOUR LOGIN EMAIL HERE" id="login" />
+   <input type="hidden" name="password" value="PUT YOUR LOGIN PASSWORD HERE" id="password" />
+</form>
+<iframe id="cclogin" name="cclogin" frameborder="0" noresize="noresize"></iframe>
+</body>
+</html>
